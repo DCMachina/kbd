@@ -1,0 +1,165 @@
+ 
+(defcfg
+  concurrent-tap-hold true
+  process-unmapped-keys yes
+)
+
+(defsrc
+  grv   1     2     3     4     5           6     7     8     9     0     -     =         
+  tab   q     w     e     r     t           y     u     i     o     p     [     ]     
+  caps  a     s     d     f     g           h     j     k     l     ;     '     102d
+  lsft  \     z     x     c     v           b     n     m     ,     .     /
+  lctl  lmet  lalt              spc         ralt  rctl
+)
+
+;; ----------------------------
+;; Variables for smarter HRMs
+;; ----------------------------
+(defvar
+  tap-time 200
+  hold-time 200
+)
+(defalias
+  ;; Layer toggle
+  bse    (layer-switch base)
+  sw-mse (layer-switch mouse)
+  med    (layer-switch media)
+)
+
+(defalias
+  ;; HRMs (Neovim-friendly)
+  nav (tap-hold $tap-time $hold-time a (layer-while-held nav))
+  s (tap-hold $tap-time $hold-time s lctl)
+  d (tap-hold $tap-time $hold-time d lalt)
+  f (tap-hold $tap-time $hold-time f lsft)
+
+  ; (tap-hold $tap-time $hold-time ; (layer-while-held mouse))
+  v (tap-hold $tap-time $hold-time v (layer-while-held media))
+)
+
+(defalias
+  ;; Core dual-role keys
+  caps (tap-hold 200 200 esc lctl)
+  ;; Space = Space / Meta (Super)
+  spc  (tap-hold 200 200 spc lmet)
+  ;; Tab = Tab / Alt
+  tab  (tap-hold 200 200 tab lalt)
+  ;; Left Shift = Enter when tapped
+  lsft (tap-hold 200 200 ret lsft)
+  ;; Grave = Alt c (Ulauncher hotkey) when tapped
+  grv  (tap-hold 200 200 (multi lalt c) lmet)
+)
+
+
+(defchordsv2
+  (q w) esc  50 all-released ()
+  (e r) ret  50 all-released ()
+  (u i) ret  50 all-released ()
+  (o p) esc  50 all-released ()
+  (z x) del  50 all-released ()
+  (, .) bspc 50 all-released ()
+  (t y) (multi lalt c) 50 all-released () 
+  (lalt lsft r) lrld 50 all-released ()
+)
+
+(defalias
+  ;; Mouse movement (basic)
+  msu (movemouse-up    10 5)
+  msl (movemouse-left  10 5)
+  msd (movemouse-down  10 5)
+  msr (movemouse-right 10 5)
+
+  ;; Mouse speeds
+  fst (movemouse-speed 70) 
+  slw (movemouse-speed 40)
+  vsl (movemouse-speed 25)
+  ;; Wheel
+  mwu (mwheel-up   50 120)
+  mwd (mwheel-down 50 120)
+
+  ;; Accel movement
+  mal (movemouse-accel-left  1 300 1 5)
+  mar (movemouse-accel-right 1 300 1 5)
+)
+
+(deflayer base
+  @grv   1     2     3     4     5           6     7     8     9     0     -     =         
+  @tab   q     w     e     r     t           y     u     i     o     p     [     ]     
+  @caps  @nav  @s    @d    @f    g           h     j     k    l      @;    '     102d
+  @lsft  \     z     x     c     @v          b     n     m     ,     .     /
+  lctl   lmet  lalt              @spc        @sw-mse     rctl
+)
+
+(deflayer nav
+  grv   1     2     3     4     5           6     7     8     9     0     -     =         
+  tab   q     w     e     r     t           y     u     i     o     p     [     ]     
+  caps  _  @s    @d    @f    g           left  down  up    right ;     '     102d
+  lsft  \     z     x     c     v           b     n     m     ,     .     /
+  lctl  lmet  lalt              spc         ralt  rctl
+)
+
+(defalias
+  ;; --- EXACT i3 media combos ---
+
+  prev_tr   (multi lmet lctl h)
+  vol_down  (multi lmet lctl j)
+  vol_up    (multi lmet lctl k)
+  next_tr   (multi lmet lctl l)
+
+  playpause (multi lmet lctl p)
+
+  mute_out  (multi lmet lctl m)
+)
+
+
+(deflayermap media
+  ;; exit layer
+
+  h @prev_tr
+  j @vol_down
+  k @vol_up
+  l @next_tr
+
+  p @playpause
+
+  m @mute_out
+)
+
+
+(deflayermap mouse
+  ;; Row 1
+  grv   @grv
+  1     voldwn
+  2     volu
+  3     prev
+  4     pp
+  5     next
+  ;; Row 2
+  tab   @tab
+  y     @mwu ;; mousewheel up
+  u     mlft ;;mouse left
+  i     @msu ;; mousemove up
+  o     mrgt ;; mouse right
+  ;; Row 3
+  caps  @caps
+  h     @mwd ;; mousewheel down
+  j     @msl ;; mousemove left
+  k     @msd ;; mousemove down
+  l     @msr ;; mousemove right
+  '     mlft ;; mouseleft 
+  ;; Row 4
+  lsft  @lsft
+  b     @vsl ;; veryslow
+  n     @fst ;; fast
+  ralt  @bse
+)
+
+#|
+(deflayer mouse
+@grv     1     2     3     4     5           6     7     8     9     0     -     =         
+@tab     q     w     e     mrgt  mmid        @mal  @mwu  @mwd  @mar  p     [      ] 
+@caps    a     s     d     f     g           @msl  @msd  @msu  @msr  ; '    102d
+@lsft    \     z     x     c     v           @vsl  @fst  m     ,     .   /
+lctl    lmet     lalt       mlft        @bse   rctl 
+)
+|#

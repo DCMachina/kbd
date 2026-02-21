@@ -1,0 +1,88 @@
+;; ============================
+;; Minimal Kanata (vim-style mouse layer)
+;; - Space: tap Space, hold Meta
+;; - Caps : tap Esc,   hold Ctrl
+;; - RAlt : toggle mouse layer
+;; - Mouse layer:
+;;     h/j/k/l = left/down/up/right
+;;     u/i     = wheel up/down
+;;     y/o     = accel left/right
+;;     n/m     = speed slow/fast
+;;     space   = left click
+;;     r/t     = right/middle click
+;; ============================
+
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  tab   q     w     e     r     t           y     u     i     o     p     [     ]     \
+  caps  a     s     d     f     g           h     j     k     l     ;     '
+  lsft  z     x     c     v     b           n     m     ,     .     /
+  lctl  lmet  lalt              spc         ralt  rctl
+)
+
+(defalias
+  ;; Tap-hold behaviour
+  spc_mod (tap-hold 200 200 spc lmet)
+  cap_ctl (tap-hold 200 200 esc lctl)
+
+  ;; Layer toggle
+  mse (layer-switch mouse)
+  bse (layer-switch base)
+
+  ;; Mouse speeds
+  fst (movemouse-speed 100)
+  slw (movemouse-speed 50)
+  vsl (movemouse-speed 25)
+
+  ;; Mouse movement (basic)
+  msu (movemouse-up    4 4)
+  msl (movemouse-left  4 4)
+  msd (movemouse-down  4 4)
+  msr (movemouse-right 4 4)
+
+  ;; Wheel
+  mwu (mwheel-up   50 120)
+  mwd (mwheel-down 50 120)
+
+  ;; Accel movement
+  mal (movemouse-accel-left  1 300 1 5)
+  mar (movemouse-accel-right 1 300 1 5)
+)
+
+(deflayer base
+  _     _     _     _     _     _           _     _     _     _     _     _     _     _
+  @cap_ctl _  _     _     _     _           _     _     _     _     _     _
+  _     _     _     _     _     _           _     _     _     _     _
+  _     _     _                 @spc_mod    @mse     _
+)
+
+(deflayer mouse
+  _     _     _     _     mrgt  mmid        @mal  @mwu  @mwd  @mar  _     _     _     _
+  _     _     _     _     _     _           @msl  @msd  @msu  @msr  _     _
+  _     _     _     _     _     _           @vsl  @fst  _     _     _
+  _     _     _                 mlft        @bse     _
+)
+
+;; ============================
+;; deflayermap versions (for your compact defsrc)
+;; ============================
+
+(deflayermap mouse
+  r   mrgt
+  t   mmid
+  y   @mal
+  u   @mwu
+  i   @mwd
+  o   @mar
+  h    @msl  ;;  ;msl (movemouse-left  4 4)
+  j    @msd  ;;  ;msd (movemouse-down  4 4)
+  k    @msu  ;;  ;msu (movemouse-up    4 4)
+  l    @msr  ;;  ;msr (movemouse-right 4 4)
+  n    @mss
+  m    @fst
+  spc  mlft
+  ralt @bse
+)

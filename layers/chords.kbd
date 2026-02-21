@@ -1,0 +1,11 @@
+
+(defchordsv2
+  (q w) esc  50 all-released ()
+  (e r) ret  50 all-released ()
+  (u i) ret  50 all-released ()
+  (o p) esc  50 all-released ()
+  (z x) del  50 all-released ()
+  (, .) bspc 50 all-released ()
+  (t y) (multi lalt c) 50 all-released () 
+  (lalt lsft r) lrld 50 all-released ()
+)
