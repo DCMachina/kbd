@@ -1,0 +1,12 @@
+(defalias
+  sublctl (tap-hold-press $subl-time $subl-time lctl
+            (multi
+              (on-press   press-vkey   vk-subl)
+              (layer-while-held subl)
+              (on-release release-vkey vk-subl)
+            )
+          )
+
+  sub-apps (layer-while-held apps)
+  sub-work (layer-while-held work)
+)

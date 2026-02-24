@@ -1,0 +1,8 @@
+(defalias
+  caps (tap-hold $tap-time $hold-time esc lctl)
+  spc  (tap-hold $tap-time $hold-time spc lmet)
+  tab  (tap-hold $tap-time $hold-time tab lalt)
+  lsft (tap-hold $tap-time $hold-time ret lsft)
+  ;; Grave: tap = Alt+c (launcher), hold = Super
+  grv  (tap-hold $tap-time $hold-time (multi lalt c) lmet)
+)

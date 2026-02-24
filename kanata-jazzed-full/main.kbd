@@ -1,0 +1,19 @@
+(include "source.kbd")
+(include "config.kbd")
+
+(include "mods/layer-switch.kbd")
+(include "mods/hrm.kbd")
+(include "mods/core-dual.kbd")
+(include "mods/chords.kbd")
+
+;; Sublayer hub (LCTL) + two sublayers
+(include "mods/sublayers.kbd")
+
+(include "layers/base.kbd")
+(include "layers/nav.kbd")
+(include "layers/mouse.kbd")
+(include "layers/media.kbd")
+
+(include "layers/subl.kbd")
+(include "layers/apps.kbd")
+(include "layers/work.kbd")

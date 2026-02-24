@@ -1,0 +1,26 @@
+(defcfg
+  process-unmapped-keys yes
+  concurrent-tap-hold true
+  override-release-on-activation yes
+  movemouse-smooth-diagonals yes
+  danger-enable-cmd yes
+)
+
+(defvar
+  tap-time   200
+  hold-time  200
+  chord-time 50
+  subl-time  220
+)
+
+(defvirtualkeys
+  vk-hr-ctl   nop0
+  vk-hr-alt   nop0
+  vk-hr-sft   nop0
+
+  vk-layer-nav    nop0
+  vk-layer-mouse  nop0
+  vk-layer-media  nop0
+
+  vk-subl nop0
+)

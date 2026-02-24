@@ -1,0 +1,11 @@
+(defchordsv2
+  (q w) esc  $chord-time all-released ()
+  (e r) ret  $chord-time all-released ()
+  (u i) ret  $chord-time all-released ()
+  (o p) esc  $chord-time all-released ()
+  (z x) del  $chord-time all-released ()
+  (, .) bspc $chord-time all-released ()
+
+  (t y) (multi lalt c) $chord-time all-released ()
+  (lalt lsft r) lrld $chord-time all-released ()
+)

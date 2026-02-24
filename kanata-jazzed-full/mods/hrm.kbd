@@ -1,0 +1,13 @@
+(defalias
+  hr-ctl (multi lctl (on-press press-vkey vk-hr-ctl) (on-release release-vkey vk-hr-ctl))
+  hr-alt (multi lalt (on-press press-vkey vk-hr-alt) (on-release release-vkey vk-hr-alt))
+  hr-sft (multi lsft (on-press press-vkey vk-hr-sft) (on-release release-vkey vk-hr-sft))
+
+  s (tap-hold $tap-time $hold-time s @hr-ctl)
+  d (tap-hold $tap-time $hold-time d @hr-alt)
+  f (tap-hold $tap-time $hold-time f @hr-sft)
+
+  . (tap-hold $tap-time $hold-time . @hr-ctl)
+  , (tap-hold $tap-time $hold-time , @hr-alt)
+  m (tap-hold $tap-time $hold-time m @hr-sft)
+)

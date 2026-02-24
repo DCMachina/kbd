@@ -1,0 +1,30 @@
+(defalias
+  bse    (layer-switch base)
+  sw-nav (layer-switch nav)
+  sw-mse (layer-switch mouse)
+  med    (layer-switch media)
+
+  nav-hld   (tap-hold-release $tap-time $hold-time a
+              (multi
+                (on-press   press-vkey   vk-layer-nav)
+                (layer-while-held nav)
+                (on-release release-vkey vk-layer-nav)
+              )
+            )
+
+  mse-hld   (tap-hold-release $tap-time $hold-time ;
+              (multi
+                (on-press   press-vkey   vk-layer-mouse)
+                (layer-while-held mouse)
+                (on-release release-vkey vk-layer-mouse)
+              )
+            )
+
+  med-hld   (tap-hold-release $tap-time $hold-time v
+              (multi
+                (on-press   press-vkey   vk-layer-media)
+                (layer-while-held media)
+                (on-release release-vkey vk-layer-media)
+              )
+            )
+)

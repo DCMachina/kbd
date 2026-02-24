@@ -1,0 +1,18 @@
+(defalias
+  prev_tr   (multi lmet lctl h)
+  vol_down  (multi lmet lctl j)
+  vol_up    (multi lmet lctl k)
+  next_tr   (multi lmet lctl l)
+  playpause (multi lmet lctl p)
+  mute_out  (multi lmet lctl m)
+)
+
+(deflayermap media
+  ralt  @bse
+  h @prev_tr
+  j @vol_down
+  k @vol_up
+  l @next_tr
+  p @playpause
+  m @mute_out
+)
