@@ -1,0 +1,25 @@
+;; layers/i3.kbd — BLANK (fill later)
+(defalias
+  fcsleft  (cmd "/usr/bin/sh" "-c" "i3-msg focus left")
+  fcsdown  (cmd "/usr/bin/sh" "-c" "i3-msg focus down")
+  fcsup    (cmd "/usr/bin/sh" "-c" "i3-msg focus up")
+  fcsright (cmd "/usr/bin/sh" "-c" "i3-msg focus right")
+
+  mark-a   (cmd "/usr/bin/sh" "-c" "i3-msg mark mark-a")
+  mark-b   (cmd "/usr/bin/sh" "-c" "i3-msg mark mark-b")
+  mark-c   (cmd "/usr/bin/sh" "-c" "i3-msg mark mark-c")
+  mark-d   (cmd "/usr/bin/sh" "-c" "i3-msg mark mark-d")
+
+)
+
+(deflayermap i3
+  h @fcsleft
+  j @fcsdown
+  k @fcsup
+  l @fcsright
+
+  u @mark-a
+  i @mark-b
+  o @mark-c
+  p @mark-d
+)

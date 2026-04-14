@@ -22,5 +22,6 @@
   vk-layer-mouse  nop0
   vk-layer-media  nop0
 
-  vk-i3 nop0
+  vk-subl nop0
+  vk-i3-mod nop0
 )

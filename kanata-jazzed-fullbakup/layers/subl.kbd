@@ -1,0 +1,24 @@
+(defalias
+  wpd-hint   (cmd /usr/local/bin/warpd --hint --oneshot)
+  wpd-hint2  (cmd /usr/local/bin/warpd --hint2 --oneshot)
+  wpd-grid   (cmd /usr/local/bin/warpd --grid --oneshot)
+  wpd-hist   (cmd /usr/local/bin/warpd --history --oneshot)
+  wpd-screen (cmd /usr/local/bin/warpd --screen --oneshot)
+  wpd-normal (cmd /usr/local/bin/warpd --normal)
+  wpd-h2c1   (cmd /home/dc/.local/bin/warpd-hint2-click1.sh)
+
+;; warpd-run
+  wpd-hc1    (cmd /home/dc/.local/bin/warpd-run.sh hint 1)
+
+  )
+
+(deflayermap subl
+  j @wpd-h2c1 
+  k @wpd-hc1
+  x @wpd-hint
+  z @wpd-hint2
+  g @wpd-grid
+  h @wpd-hist
+  s @wpd-screen
+  c @wpd-normal
+)

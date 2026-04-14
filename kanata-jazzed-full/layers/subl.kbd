@@ -1,8 +1,0 @@
-(deflayermap subl
-  ;; escape hatch
-  ralt  @bse
-
-  ;; hold these to enter sublayers
-  a     @sub-apps
-  d     @sub-work
-)

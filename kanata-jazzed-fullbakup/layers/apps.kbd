@@ -1,0 +1,72 @@
+;; layers/apps.kbd — Apps sublayer (momentary)
+;;
+;; Assumes you have:
+;;   ~/.local/bin/switch-app.sh
+;;
+;; If an app doesn't focus correctly:
+;;   X11/i3:  xprop | grep WM_CLASS   (click the window)
+;;   then edit the --class values below.
+
+(defalias
+  ;; ---------- core apps ----------
+  a-term   (cmd bash -lc "~/.local/bin/switch-app.sh --class wezterm -- launch wezterm")
+  a-term2  (cmd bash -lc "~/.local/bin/switch-app.sh --class Alacritty -- launch alacritty")
+  a-ff     (cmd bash -lc "~/.local/bin/switch-app.sh --class firefox -- launch firefox")
+  a-brave  (cmd bash -lc "~/.local/bin/switch-app.sh --class brave-browser -- launch brave")
+  a-code   (cmd bash -lc "~/.local/bin/switch-app.sh --class code -- launch code")
+  a-files  (cmd bash -lc "~/.local/bin/switch-app.sh --class org.gnome.Nautilus -- launch nautilus")
+  a-thunar (cmd bash -lc "~/.local/bin/switch-app.sh --class Thunar -- launch thunar")
+  a-spot   (cmd bash -lc "~/.local/bin/switch-app.sh --class spotify -- launch spotify")
+  a-discord(cmd bash -lc "~/.local/bin/switch-app.sh --class discord -- launch discord")
+  a-chat   (cmd bash -lc "~/.local/bin/switch-app.sh --title 'ChatGPT' -- launch firefox --new-window 'https://chat.openai.com'")
+
+  ;; ---------- utilities ----------
+  a-calc   (cmd bash -lc "~/.local/bin/switch-app.sh --class gnome-calculator -- launch gnome-calculator")
+  a-sysmon (cmd bash -lc "~/.local/bin/switch-app.sh --class org.gnome.SystemMonitor -- launch gnome-system-monitor")
+  a-pass   (cmd bash -lc "~/.local/bin/switch-app.sh --title '1Password' -- launch 1password")
+
+  ;; ---------- i3 workspace jumps (safe no-op if not on i3) ----------
+  ws-1 (cmd bash -lc "command -v i3-msg >/dev/null && i3-msg workspace number 1 >/dev/null || true")
+  ws-2 (cmd bash -lc "command -v i3-msg >/dev/null && i3-msg workspace number 2 >/dev/null || true")
+  ws-3 (cmd bash -lc "command -v i3-msg >/dev/null && i3-msg workspace number 3 >/dev/null || true")
+  ws-4 (cmd bash -lc "command -v i3-msg >/dev/null && i3-msg workspace number 4 >/dev/null || true")
+  ws-5 (cmd bash -lc "command -v i3-msg >/dev/null && i3-msg workspace number 5 >/dev/null || true")
+  ws-6 (cmd bash -lc "command -v i3-msg >/dev/null && i3-msg workspace number 6 >/dev/null || true")
+  ws-7 (cmd bash -lc "command -v i3-msg >/dev/null && i3-msg workspace number 7 >/dev/null || true")
+  ws-8 (cmd bash -lc "command -v i3-msg >/dev/null && i3-msg workspace number 8 >/dev/null || true")
+  ws-9 (cmd bash -lc "command -v i3-msg >/dev/null && i3-msg workspace number 9 >/dev/null || true")
+)
+
+(deflayermap apps
+  ;; leave layer quickly
+  ralt  @bse
+
+  ;; home row = main launcher bar
+  a     @a-term      ;; terminal
+  s     @a-code      ;; code editor
+  d     @a-files     ;; file manager (nautilus)
+  f     @a-ff        ;; browser (firefox)
+  g     @a-brave     ;; browser alt (brave)
+
+  h     @a-chat      ;; chatgpt
+  j     @a-spot      ;; spotify
+  k     @a-discord   ;; discord
+  l     @a-sysmon    ;; system monitor
+
+  ;; utility row
+  q     @a-calc
+  w     @a-pass
+  e     @a-thunar
+  r     @a-term2
+
+  ;; workspace row (optional)
+  1     @ws-1
+  2     @ws-2
+  3     @ws-3
+  4     @ws-4
+  5     @ws-5
+  6     @ws-6
+  7     @ws-7
+  8     @ws-8
+  9     @ws-9
+)

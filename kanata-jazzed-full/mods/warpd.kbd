@@ -1,0 +1,9 @@
+(defalias
+  wpd (tap-hold-press $subl-time $subl-time lctl
+            (multi
+              (on-press   press-vkey   vk-i3)
+              (layer-while-held warpd)
+              (on-release release-vkey vk-i3)
+            )
+          )
+)

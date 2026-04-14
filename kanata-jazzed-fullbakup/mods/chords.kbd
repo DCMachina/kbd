@@ -1,6 +1,6 @@
 (defchordsv2
 ;;(q w) ret  $chord-time all-released ()
-  (u i) ret  $chord-time all-released ()
+;;(u i) ret  $chord-time all-released ()
   (o p) esc  $chord-time all-released ()
 ;;(z x) del  $chord-time all-released ()
 ;;(, .) bspc $chord-time all-released ()

@@ -1,0 +1,16 @@
+;; layers/i3.kbd — BLANK (fill later)
+
+(defalias
+  fcsleft  (cmd "sh -c 'i3-msg focus left'")
+  fcsright (cmd "sh -c 'i3-msg focus right'")
+  fcsup    (cmd "sh -c 'i3-msg focus up'")
+  fcsdown  (cmd "sh -c 'i3-msg focus down'")
+)
+
+
+(deflayermap i3
+  h @fcsleft
+  j @fcsdown
+  k @fcsup
+  l @fcsright
+)

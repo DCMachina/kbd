@@ -6,7 +6,4 @@
               (on-release release-vkey vk-subl)
             )
           )
-
-  sub-apps (layer-while-held apps)
-  sub-work (layer-while-held work)
 )

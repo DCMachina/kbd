@@ -1,0 +1,51 @@
+(defcfg
+  process-unmapped-keys yes
+  concurrent-tap-hold true
+  danger-enable-cmd yes
+)
+
+(defsrc
+  1 2 3 4 a s d f h j k l z x
+)
+(defalias
+ i3  (tap-hold 200 200 z (layer-while-held i3-layer))
+ sub (tap-hold 200 200 x (layer-while-held sublayer))
+)
+(defalias
+  fcsleft  (cmd "/usr/bin/sh" "-c" "i3-msg focus left")
+  fcsdown  (cmd "/usr/bin/sh" "-c" "i3-msg focus down")
+  fcsup    (cmd "/usr/bin/sh" "-c" "i3-msg focus up")
+  fcsright (cmd "/usr/bin/sh" "-c" "i3-msg focus right")
+
+  mark-a   (cmd "/usr/bin/sh" "-c" "i3-msg mark aamark")
+  mark-b   (cmd "/usr/bin/sh" "-c" "i3-msg mark mark-b")
+  mark-c   (cmd "/usr/bin/sh" "-c" "i3-msg mark mark-c")
+  mark-d   (cmd "/usr/bin/sh" "-c" "i3-msg mark mark-d")
+
+  focus-a   (cmd "/usr/bin/sh" "-c" "i3-msg [con_mark="mark-a"] focus")
+  focus-b   (cmd "/usr/bin/sh" "-c" "i3-msg [con_mark="mark-b"] focus")
+  focus-c   (cmd "/usr/bin/sh" "-c" "i3-msg [con_mark="mark-c"] focus")
+  focus-d   (cmd "/usr/bin/sh" "-c" "i3-msg [con_mark="mark-d"] focus")
+
+)
+(deflayer base
+  1 2 3 4 a s d f h j k l @i3 x
+)
+(deflayermap i3-layer
+  1 @focus-a
+  2 @focus-b
+  3 @focus-c
+  4 @focus-d
+  h @fcsleft
+  j @fcsdown
+  k @fcsup
+  l @fcsright
+  x @sub
+)
+
+(deflayermap sublayer
+  1 @mark-a
+  2 @mark-b
+  3 @mark-c
+  4 @mark-d
+)

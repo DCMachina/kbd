@@ -3,5 +3,5 @@
   tab   q    C-w C-S-tab    ret   S-ret           y     u     i     o     p     [     ]
   caps  _     @s          @d    @f    g           left  down  up   right  ;     '     102d
   lsft  \     z           x     c     v           b     n     m     ,     .     /
-  @warpd lmet  lalt            spc        ralt  rctl
+  @sublctl lmet  lalt            spc        ralt  rctl
 )

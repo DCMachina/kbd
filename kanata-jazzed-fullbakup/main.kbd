@@ -7,13 +7,13 @@
 (include "mods/chords.kbd")
 
 ;; Sublayer hub (LCTL) + two sublayers
-(include "mods/warpd.kbd")
+(include "mods/sublayers.kbd")
 
 (include "layers/base.kbd")
 (include "layers/nav.kbd")
 (include "layers/mouse.kbd")
 (include "layers/media.kbd")
 
-(include "layers/warpd.kbd")
+(include "layers/subl.kbd")
 (include "layers/apps.kbd")
 (include "layers/i3.kbd")
