@@ -1,0 +1,101 @@
+(include "source.kbd")
+(include "config.kbd")
+
+(include "mods/layer-switch.kbd")
+(include "mods/hrm.kbd")
+(include "mods/core-dual.kbd")
+(include "mods/chords.kbd")
+
+;; Sublayer hub (LCTL) + two sublayers
+(include "mods/sublayers.kbd")
+
+(include "layers/base.kbd")
+(include "layers/nav.kbd")
+(include "layers/mouse.kbd")
+(include "layers/media.kbd")
+
+(include "layers/subl.kbd")
+(include "layers/apps.kbd")
+(include "layers/i3.kbd")
+(defsrc
+  grv   1     2     3     4     5           6     7     8     9     0     -     =  bspc 
+  tab   q     w     e     r     t           y     u     i     o     p     [     ]
+  caps  a     s     d     f     g           h     j     k     l     ;     '     102d
+  lsft  \     z     x     c     v           b     n     m     ,     .     /   rsft
+  lctl  lmet  lalt              spc         ralt  rctl
+)
+
+(defcfg
+  process-unmapped-keys yes
+  concurrent-tap-hold true
+  override-release-on-activation yes
+  movemouse-smooth-diagonals yes
+  danger-enable-cmd yes
+)
+
+(defvar
+  tap-time   250
+  hold-time  300
+  chord-time 100
+  subl-time  220
+)
+
+(defvirtualkeys
+  vk-hr-ctl   nop0
+  vk-hr-alt   nop0
+  vk-hr-sft   nop0
+
+  vk-layer-nav    nop0
+  vk-layer-mouse  nop0
+  vk-layer-media  nop0
+
+  vk-subl nop0
+  vk-i3-mod nop0
+)
+(deflayer base
+   grv   1     2     3     4     5           6     7     8     9     0     -     = bspc
+  @tab   q     w     e     r     t           y     u     i     o     p     [     ]
+  @caps  @nav-hld  @s    @d    @f    g       h     j     k     l     @mse-hld  '  102d
+  @lsft   \     @i3-hld     x     c     @med-hld     b     n     @m     @,     @.     / @rsft
+  lctl lmet  lalt            @spc       @sublctl      @sublctl  
+  )
+(deflayer nav
+  grv   1     2     3     4     5           6     7     8     9     0     -     =   del
+  tab   q    C-w C-S-tab  r      t          y     u     i     o     p     [     ]
+  caps  _     @s          @d    @f    g           left  down  up   right  ;     '     102d
+  lsft  \     z   bspc     c     v      b            n     m     ,     .     /    @rsft
+  @sublctl lmet  lalt            spc        ralt  rctl
+)
+(defalias
+  msu (movemouse-up    10 5)
+  msl (movemouse-left  10 5)
+  msd (movemouse-down  10 5)
+  msr (movemouse-right 10 5)
+
+  fst (movemouse-speed 70)
+  slw (movemouse-speed 40)
+  vsl (movemouse-speed 25)
+
+  mwu (mwheel-up   50 120)
+  mwd (mwheel-down 50 120)
+)
+
+(deflayermap mouse
+  ralt  @bse
+
+  y     @mwu
+  h     @mwd
+
+  i     @msu
+  j     @msl
+  k     @msd
+  l     @msr
+
+  u     mlft
+  '     mlft
+  o     mrgt
+
+  b     @vsl
+  n     @fst
+  m     @slw
+)

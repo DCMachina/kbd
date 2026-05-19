@@ -1,0 +1,33 @@
+(defalias
+  msu (movemouse-up    10 5)
+  msl (movemouse-left  10 5)
+  msd (movemouse-down  10 5)
+  msr (movemouse-right 10 5)
+
+  fst (movemouse-speed 70)
+  slw (movemouse-speed 40)
+  vsl (movemouse-speed 25)
+
+  mwu (mwheel-up   50 120)
+  mwd (mwheel-down 50 120)
+)
+
+(deflayermap mouse
+  ralt  @bse
+
+  y     @mwu
+  h     @mwd
+
+  i     @msu
+  j     @msl
+  k     @msd
+  l     @msr
+
+  u     mlft
+  '     mlft
+  o     mrgt
+
+  b     @vsl
+  n     @fst
+  m     @slw
+)
